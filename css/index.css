@@ -5,3 +5,11 @@ body {
 .navbar-brand {
     margin-left: 5%;
 }
+
+.cover {
+    background: url(img/cover.png) center no-repeat;
+    padding: 150px 0 150px 0;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
