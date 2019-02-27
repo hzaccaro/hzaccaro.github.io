@@ -7,9 +7,21 @@ body {
 }
 
 .cover {
-    background: url(img/cover.png) center no-repeat;
+    background: url(../img/cover.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     padding: 150px 0 150px 0;
+    margin: 0;
     text-align: center;
     justify-content: center;
     width: 100%;
+    color: whitesmoke;
+}
+
+.test {
+    text-align: center;
+    padding: 50px 0px 400px 0px;
+    color: #008080;
 }
