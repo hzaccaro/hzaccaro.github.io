@@ -60,6 +60,8 @@ body {
     justify-content: center;
     width: 100%;
     color: whitesmoke;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 70% 94%, 49% 100%, 29% 94%, 0 94%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 70% 94%, 49% 100%, 29% 94%, 0 94%);
 }
 
 .text-highlight {
