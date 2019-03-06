@@ -26,19 +26,26 @@ body {
     color: #008080;
 }
 
-.containerHome{
-    margin-top: 2%;
+.content{
+    margin-top: 25px;
     background: url(../img/cover.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     color: white;
+    padding-bottom: 25px;
 }
 
 /* serve para deixar o texto centralizado, deve ter uma maneira de deixar mais prático e automatico ao aparelho...*/
 .cabecalho{
-    margin-left: 35%;
+    text-align: center;
+    padding: 15px;
+}
+
+.cabecalho h3 {
+    font-weight: lighter !important;
+    font-size: 2.5rem;
 }
 
 /* faz com que o Carousel em texto não fique ferrado */
@@ -46,6 +53,10 @@ body {
 .carousel-item-next,
 .carousel-item-prev{
     display:block;
+}
+
+.carousel-text {
+    padding: 15px 25px;
 }
 
 #footer{
@@ -109,32 +120,13 @@ body {
     font-weight: 700;
 }
 
- @media (max-width:767px){
+@media (max-width:767px){
 	#footer h5 {
     padding-left: 0;
     border-left: transparent;
     padding-bottom: 0px;
     margin-bottom: 10px;
 }
-
-
-/***** Start of deleteThisPart *****/
-body {
-	margin: 0;
-	padding: 0;
-}
-
-ul {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, 50%);
-	display: flex;
-}
-/***** End of deleteThisPart *****/
-
-
-
 
 /***** Custom Button *****/
 
