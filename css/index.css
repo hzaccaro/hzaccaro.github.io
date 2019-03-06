@@ -26,19 +26,26 @@ body {
     color: #008080;
 }
 
-.containerHome{
-    margin-top: 2%;
+.content{
+    margin-top: 25px;
     background: url(../img/cover.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     color: white;
+    padding-bottom: 25px;
 }
 
 /* serve para deixar o texto centralizado, deve ter uma maneira de deixar mais prático e automatico ao aparelho...*/
 .cabecalho{
-    margin-left: 35%;
+    text-align: center;
+    padding: 15px;
+}
+
+.cabecalho h3 {
+    font-weight: lighter !important;
+    font-size: 2.5rem;
 }
 
 /* faz com que o Carousel em texto não fique ferrado */
@@ -48,10 +55,15 @@ body {
     display:block;
 }
 
+<<<<<<< HEAD
  /* Fix bootstrap non-sense */
 .no-border {
     padding-right: 0 !important;
     padding-left: 0 !important;
+=======
+.carousel-text {
+    padding: 15px 25px;
+>>>>>>> 478d82fee572f864ce043c5085988415ccc262f4
 }
 
 #footer{
@@ -63,6 +75,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+<<<<<<< HEAD
 .footerText {
   margin: 10px 5px 10px 5px;
   color: white;
@@ -223,3 +236,174 @@ body {
       transition: transform .5s;
   }
   /***** End of Custom Button CSS *****/
+=======
+#footer h5{
+	  padding-left: 10px;
+    border-left: 3px solid #eeeeee;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    color:#ffffff;
+}
+#footer a {
+    color: #ffffff;
+    text-decoration: none !important;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+#footer ul.social li{
+	padding: 3px 0;
+}
+#footer ul.social li a i {
+    margin-right: 5px;
+	font-size:25px;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#footer ul.social li:hover a i {
+	font-size:30px;
+	margin-top:-10px;
+}
+#footer ul.social li a,
+#footer ul.quick-links li a{
+	color:#ffffff;
+}
+#footer ul.social li a:hover{
+	color:#eeeeee;
+}
+#footer ul.quick-links li{
+	padding: 3px 0;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#footer ul.quick-links li:hover{
+	padding: 3px 0;
+	margin-left:5px;
+	font-weight:700;
+}
+#footer ul.quick-links li a i{
+	margin-right: 5px;
+}
+#footer ul.quick-links li:hover a i {
+    font-weight: 700;
+}
+
+@media (max-width:767px){
+	#footer h5 {
+    padding-left: 0;
+    border-left: transparent;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+    }
+}
+
+/***** Custom Button *****/
+
+/* Removes the dot that usually floats on the left of <li> */
+.custom-btn {
+    list-style: none;
+}
+
+/* To modify the button scale the width, height and line-height must be the same
+	font-size looks cool if you the width and divide by 2
+	The margin between the buttons is set here too */
+.custom-btn a {
+    display: block;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: #404040;
+    margin: 0 5px;
+}
+
+/* The transition here will handle the mouse-leave */
+.custom-btn a span {
+    position: absolute;
+    transition: transform .5s;
+}
+
+/* Sets the horizontal lines */
+.custom-btn a span:nth-child(1),
+.custom-btn a span:nth-child(3) {
+    width: 100%;
+    height: 1px;
+    background: #303030;
+}
+
+/* Sets the top line position
+	the transform-origin here handles when it has to show up again
+	that's the same for every other line
+	it will always be the opposite from where it's going to hide/show on hover */
+.custom-btn a span:nth-child(1) {
+    top: 0;
+    left: 0;
+    transform-origin: right;
+}
+
+/* Scales down the span from the right to the left on hover
+	the scaleX will make sure the arrow hides in the X-axis
+	otherwise the line would become too thin to see while it hides */
+.custom-btn a:hover span:nth-child(1) {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .5s;
+}
+
+/* Sets the bottom line position */
+.custom-btn a span:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    transform-origin: left;
+}
+
+/* Scales down the span from the left to the right on hover */
+.custom-btn a:hover span:nth-child(3) {
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .5s;
+}
+
+/* Sets the vertical lines */
+.custom-btn a span:nth-child(2),
+.custom-btn a span:nth-child(4) {
+    width: 1px;
+    height: 100%;
+    background: #303030;
+}
+
+/* Sets the left line position and hides it for now */
+.custom-btn a span:nth-child(2) {
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+/* Show/Scales up the line from the top to the bottom */
+.custom-btn a:hover span:nth-child(2) {
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: transform .5s;
+}
+
+/* Sets the right line position and hides it for now */
+.custom-btn a span:nth-child(4) {
+    top: 0;
+    right: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+/* Show/Scales up the line from the bottom to the top */
+.custom-btn a:hover span:nth-child(4) {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: transform .5s;
+}
+/***** End of Custom Button CSS *****/
+>>>>>>> 478d82fee572f864ce043c5085988415ccc262f4
