@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/index.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
 
@@ -41,9 +43,126 @@
         <h1 class="display-3">Expanda o seu negócio</h1>
         <p class="lead">Faça parte do mercado online e descubra novas possibilidades</p>
     </div>
+
     <div class="container-fluid">
-        <h1 class="test display-4">Testando</h1>
+        <div class="row containerHome border align-items-center">
+            <!-- cabeçalho -->
+            <div class="cabecalho">
+                <h3>Como podemos te ajudar</h3>
+            </div>
+
+            <!-- serve apenas para deixar o cabeçalho alone -->
+            <div class="w-100"></div>
+
+            <!-- começo do carousel, não sei se da pra substituir um dos textos por imagem tem que testar -->
+            <div id="carouselContent" class="carousel slide col" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active text-center p-4">
+                        <p class="lead">Aqui pode ir um texto bem louco apresentando algo
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+                    <div class="carousel-item text-center p-4">
+
+                        <p class="lead">Aqui pode ir um texto bem louco explicando algo
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <!-- fotinha que pode e deve ser mudada, pode por texto também ou algo do gênero -->
+            <div class="col p-auto m-auto">
+                <img src="img/md01.jpg">
+            </div>
+        </div>
     </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-4">
+    <h5>Contato</h5>
+      <ul class="list-unstyled quick-links">
+        <li class="custom-btn">
+          <a href="/">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <i class="fa fa-whatsapp"></i>
+            Número 1
+          </a>
+        </li>
+        <li class="custom-btn">
+          <a href="/">
+            <i class="fa fa-whatsapp">
+            </i>
+          Número 2</a>
+        </li>
+        <li><a href="/"><i class="fas fa-envelope-square"></i>E-mail</a></li>
+      </ul>
+    </div>
+
+
+
+    <!-- começo do footer -->
+    <footer class="page-footer font-small" id="footer">
+      <div class="container text-center text-md-left">
+        <div class="row text-center text-xs-center text-sm-left text-md-left">
+
+          <div class="col-xs-12 col-sm-4 col-md-4">
+					<h5>Contato</h5>
+  					<ul class="list-unstyled quick-links">
+  						<li class="custom-btn">
+                <a href="/">
+                  <span></span>
+          				<span></span>
+          				<span></span>
+          				<span></span>
+                  <i class="fa fa-whatsapp"></i>
+                  Número 1
+                </a>
+              </li>
+  						<li class="custom-btn"><a href="/"><i class="fa fa-whatsapp"></i></i>Número 2</a></li>
+              <li><a href="/"><i class="fas fa-envelope-square"></i>E-mail</a></li>
+  					</ul>
+				  </div>
+
+          <div class="col-xs-12 col-sm-4 col-md-4">
+          <h5>Conheça nossa Equipe</h5>
+            <ul class="list-unstyled quick-links">
+              <li><a href="/"><i class="fas fa-dice-d20"></i>Bruno</a></li>
+              <li><a href="/"><i class="fa fa-hand-middle-finger"></i>Henry</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 col-md-4">
+          <h5>Mídia</h5>
+            <ul class="list-unstyled quick-links">
+              <li class="custom-btn"><a href="/;"><i class="fa fa-facebook"></i>Facebook</a></li>
+              <li class="custom-btn"><a href="/"><i class="fa fa-instagram"></i>Instagram</a></li>
+              <li><a href="/"><i class="far fa-question-circle"></i>FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class="w-100"></div>
+
+           <!-- Copyright -->
+          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center" style="color: white">
+              icone aqui 2019. Todos direitos reservados.
+          </div>
+      <div>
+    </footer>
+
+
 
     <!--Bootstrap JS-->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -51,5 +170,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </body>
+
+
 
 </html>
