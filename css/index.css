@@ -75,6 +75,35 @@ body {
   padding: 0;
 }
 
+#aboutPhoto{
+  width: 80px;
+  height: 80px;
+  clip-path: circle();
+  margin-right: 10px;
+}
+
+.photoSubtitle{
+  text-align: center;
+}
+
+@media only screen and (max-width: 400px) {
+  .mobile-hide{
+    display: none !important; }
+}
+
+@media only screen and (max-width: 400px) {
+  .col-sm-12{
+    align-items: right;
+  }
+  .mobile{
+    display: list-item; !important; }
+}
+
+@media only screen and (min-width: 500px) {
+  .desktop-hide{
+    display: none !important; }
+}
+
   /***** Trying to do some magic ( got it (: ) *****/
 
   /* Removes the dot that usually floats on the left of <li> */
