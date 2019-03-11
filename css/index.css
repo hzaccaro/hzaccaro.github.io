@@ -56,10 +56,22 @@ body {
     color: whitesmoke;
 }
 
-.test {
+.cover-main {
+    padding: 150px 0 150px 0;
     text-align: center;
-    padding: 50px 0px 400px 0px;
+    justify-content: center;
+    width: 100%;
+    color: whitesmoke;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 70% 94%, 49% 100%, 29% 94%, 0 94%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 70% 94%, 49% 100%, 29% 94%, 0 94%);
+}
+
+.text-highlight {
+    text-align: center;
+    padding: 50px 0px 50px 0px;
     color: #008080;
+    font-weight: 300;
+    font-size: 3rem;
 }
 
 .content{
