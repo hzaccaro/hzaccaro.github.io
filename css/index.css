@@ -1,9 +1,45 @@
 body {
     overflow-y: scroll;
+    margin: 0;
+    padding: 64px 0 0 0;
+}
+
+.navbar {
+    padding: 0 !important;
+    height: 64px;
 }
 
 .navbar-brand {
     margin-left: 5%;
+}
+
+#navbarContent {
+    height: 100%;
+}
+
+.navbar-nav {
+    height: 100%;
+    margin-right: 50px;
+}
+
+.nav-item a {
+    padding-top: 20px;
+    margin: 0 5px;
+    transition: .5s;
+}
+
+.nav-item:hover {
+    background: #008080;
+    transition: background .5s;
+}
+
+.nav-item a {
+    transition: .3s;
+}
+
+.nav-item:hover a {
+    color: whitesmoke !important;
+    transition: color .3s;
 }
 
 .cover {
