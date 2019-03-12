@@ -74,6 +74,29 @@ body {
     font-size: 3rem;
 }
 
+/*meio óbvio mas hoverzão pra mudar a cor dos cards, deixei o mesmo esquema de cor do nav
+  acho que se tiver muitas cores diferentes fica meio "enjoativo"*/
+.card-color:hover{
+  background: #008080 !important;
+  color: white;
+  transition: background .5s;
+
+}
+/*centraliza as colunas, no celular fica centralizado certo,
+  mas como o menu ta cagado não da pra saber ao certo teria que arrumar ele primeiro...*/
+.cards-col{
+  padding-left: 7%;
+}
+
+/* apenas para o background, tem que ver pra centralizar isso em uma classe só... */
+.container-cards {
+  background: url(../img/cover.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .content{
     margin-top: 25px;
     background: url(../img/cover.png) no-repeat center center fixed;
