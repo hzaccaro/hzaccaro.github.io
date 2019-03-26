@@ -41,7 +41,7 @@ body {
 }
 
 .cover-img {
-    background: url(../img/cover.png) no-repeat center center fixed;
+    background: url(img/cover.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -69,6 +69,11 @@ body {
     color: #008080;
     font-weight: 300;
     font-size: 3rem;
+    line-height: 2.5rem;
+}
+
+.text-highlight small {
+    font-size: 1.2rem;
 }
 
 
