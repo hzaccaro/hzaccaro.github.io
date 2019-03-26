@@ -63,7 +63,7 @@ body {
     text-align: center;
 }
 
-.text-highlight {
+.title-highlight {
     text-align: center;
     padding: 50px 0px 50px 0px;
     color: #008080;
@@ -72,10 +72,28 @@ body {
     line-height: 2.5rem;
 }
 
-.text-highlight small {
+.title-highlight-sm {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.title-highlight small {
     font-size: 1.2rem;
 }
 
+#contact {
+    /* Fix padding/margin after finished */
+    margin-top: 50px;
+    padding: 50px 5%;
+    background: #101616;
+    clip-path: polygon(0 0, 100% 7vw, 100% 100%, 0 100%);
+}
+
+#contact .row {
+    justify-content: center;
+}
 
 /***** Trying to do some magic ( got it (: ) *****/
 
@@ -85,7 +103,7 @@ body {
 }
 
 /* To modify the button scale properly the width, height and line-height must be the same
-    font-size looks cool if you the width and divide by 2
+    font-size looks cool if you know the width and divide it by 2
     The margin between the buttons is set here too */
 .custom-btn a {
     display: block;
@@ -97,7 +115,7 @@ body {
     text-align: center;
     text-decoration: none;
     color: #ffffff;
-    margin: 0 10px;
+    margin: 0 5px;
     transition: color .5s;
     transition: background .7s;
 }
@@ -142,6 +160,10 @@ body {
 
 .custom-btn .whatsapp-icon:hover {
     color: #33CC46;
+}
+
+.custom-btn .reddit-icon:hover {
+    color: #FF4301;
 }
 
 /* The transition here will handle the mouse-leave on all lines */
