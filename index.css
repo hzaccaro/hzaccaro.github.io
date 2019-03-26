@@ -1,67 +1,66 @@
 body {
     overflow-y: scroll;
-    margin: 0;
-    padding: 64px 0 0 0;
-}
-
-.navbar {
-    padding: 0 !important;
-    height: 64px;
+    padding-top: 64px;
 }
 
 .navbar-brand {
     margin-left: 5%;
 }
 
-#navbarContent {
-    height: 100%;
+@media (min-width: 768px) {
+    #navbar {
+        padding: 0 !important;
+    }
+
+    #navbarContent {
+        height: 64px;
+    }
+
+    .navbar-nav {
+        height: 100%;
+        margin-right: 50px;
+    }
+
+    .nav-item {
+        padding-top: 12px;
+    }
+
+    .nav-item a {
+        margin: 0 5px;
+    }
+
+    .nav-item:hover {
+        background: #008080;
+        transition: background .5s;
+    }
+
+    .nav-item:hover a {
+        color: whitesmoke !important;
+        transition: color .3s;
+    }
 }
 
-.navbar-nav {
-    height: 100%;
-    margin-right: 50px;
-}
-
-.nav-item a {
-    padding-top: 20px;
-    margin: 0 5px;
-    transition: .5s;
-}
-
-.nav-item:hover {
-    background: #008080;
-    transition: background .5s;
-}
-
-.nav-item a {
-    transition: .3s;
-}
-
-.nav-item:hover a {
-    color: whitesmoke !important;
-    transition: color .3s;
-}
-
-.no-border {
-    padding: inherit 0;
-}
-
-.cover {
+.cover-img {
     background: url(../img/cover.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-.cover-main {
-    padding: 150px 0 150px 0;
-    text-align: center;
-    justify-content: center;
     width: 100%;
     color: whitesmoke;
-    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 70% 94%, 49% 100%, 29% 94%, 0 94%);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 70% 94%, 49% 100%, 29% 94%, 0 94%);
+}
+
+.cover-full {
+    height: 100vh;
+}
+
+.cover-full .row {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    text-align: center;
 }
 
 .text-highlight {
