@@ -242,6 +242,10 @@ body {
       color: #33CC46;
   }
 
+  .custom-btn .envelope-icon:hover {
+      color: #dc3545;
+  }
+
   /* The transition here will handle the mouse-leave on all lines */
   .custom-btn a .custom-btn-line {
       position: absolute;
