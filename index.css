@@ -1,365 +1,333 @@
 body {
     overflow-y: scroll;
-    padding-top: 64px;
+    margin: 0;
+    padding: 64px 0 0 0;
+}
+
+.navbar {
+    padding: 0 !important;
+    height: 64px;
 }
 
 .navbar-brand {
     margin-left: 5%;
 }
 
-@media (min-width: 768px) {
-    #navbar {
-        padding: 0 !important;
-    }
-
-    #navbarContent {
-        height: 64px;
-    }
-
-    .navbar-nav {
-        height: 100%;
-        margin-right: 50px;
-    }
-
-    .nav-item {
-        padding-top: 12px;
-    }
-
-    .nav-item a {
-        margin: 0 5px;
-    }
-
-    .nav-item:hover {
-        background: #008080;
-        transition: background .5s;
-    }
-
-    .nav-item:hover a {
-        color: whitesmoke !important;
-        transition: color .3s;
-    }
+#navbarContent {
+    height: 100%;
 }
 
-.cover-img {
-    background: url(img/cover.png) no-repeat center center fixed;
+.navbar-nav {
+    height: 100%;
+    margin-right: 50px;
+}
+
+.nav-item a {
+    padding-top: 20px;
+    margin: 0 5px;
+    transition: .5s;
+}
+
+.nav-item:hover {
+    background: #008080;
+    transition: background .5s;
+}
+
+.nav-item a {
+    transition: .3s;
+}
+
+.nav-item:hover a {
+    color: whitesmoke !important;
+    transition: color .3s;
+}
+
+.cover {
+    background: url(../img/cover.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    padding: 150px 0 150px 0;
+    margin: 0;
+    text-align: center;
+    justify-content: center;
     width: 100%;
     color: whitesmoke;
 }
 
-.cover-full {
-    height: 80vh;
-}
-
-.cover-full .row {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    justify-content: center;
+.cover-main {
+    padding: 150px 0 150px 0;
     text-align: center;
+    justify-content: center;
+    width: 100%;
+    color: whitesmoke;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 70% 94%, 49% 100%, 29% 94%, 0 94%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 70% 94%, 49% 100%, 29% 94%, 0 94%);
 }
 
-.title-highlight {
+.text-highlight {
     text-align: center;
     padding: 50px 0px 50px 0px;
     color: #008080;
     font-weight: 300;
     font-size: 3rem;
-    line-height: 2.5rem;
 }
 
-.title-highlight-sm {
-    text-align: center;
+/*meio óbvio mas hoverzão pra mudar a cor dos cards, deixei o mesmo esquema de cor do nav
+  acho que se tiver muitas cores diferentes fica meio "enjoativo"*/
+.card-color:hover{
+  background: #008080 !important;
+  color: white;
+  transition: background .5s;
+
+}
+/*centraliza as colunas, no celular fica centralizado certo,
+  mas como o menu ta cagado não da pra saber ao certo teria que arrumar ele primeiro...*/
+.cards-col{
+  padding-left: 7%;
+}
+
+/* apenas para o background, tem que ver pra centralizar isso em uma classe só... */
+.container-cards {
+  background: url(../img/cover.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.content{
+    margin-top: 25px;
+    background: url(../img/cover.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     color: white;
-    font-size: 2rem;
-    font-weight: 300;
+    padding-bottom: 25px;
 }
 
-.title-highlight small {
-    font-size: 1.2rem;
-}
-
-#contact {
-    /* Fix padding/margin after finished */
-    margin-top: 50px;
-    padding: 50px 5%;
-    background: #101616;
-    clip-path: polygon(0 0, 100% 7vw, 100% 100%, 0 100%);
-}
-
-#contact .row {
-    justify-content: center;
-}
-
-/***** Trying to do some magic ( got it (: ) *****/
-
-/* Removes the dot that usually floats on the left of <li> */
-.custom-btn {
-    list-style: none;
-}
-
-/* To modify the button scale properly the width, height and line-height must be the same
-    font-size looks cool if you know the width and divide it by 2
-    The margin between the buttons is set here too */
-.custom-btn a {
-    display: block;
-    position: relative;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 24px;
+/* serve para deixar o texto centralizado, deve ter uma maneira de deixar mais prático e automatico ao aparelho...*/
+.cabecalho{
     text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    margin: 0 5px;
-    transition: color .5s;
-    transition: background .7s;
+    padding: 15px;
 }
 
-.custom-btn a:hover {
-    background: #1b2727;
-    transition: background .7s;
+.cabecalho h3 {
+    font-weight: lighter !important;
+    font-size: 2.5rem;
 }
 
-.custom-btn .fb-icon:hover {
-    color: #3b5998;
-    transition: color .5s;
+/* faz com que o Carousel em texto não fique ferrado */
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev{
+    display:block;
 }
 
-/***** Insta-icon is kinda special bcuz of the gradient *****/
-/* First i had to position it on the center */
-.insta-icon img {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    transition: opacity .5s;
+.carousel-text {
+    padding: 15px 25px;
 }
 
-/* Then make the second image hidden */
-.insta-icon .insta-colored {
-    opacity: 0;
+#footer{
+  margin-top: 2px;
+  background: url(../img/cover.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.footerText {
+  margin: 10px 5px 10px 5px;
+  color: white;
+}
+#footer ul {
+  padding: 0;
 }
 
-/* This hides the instagram all black logo */
-.insta-icon:hover .insta-b {
-    opacity: 0;
-    transition: opacity .5s;
+#aboutPhoto{
+  width: 80px;
+  height: 80px;
+  clip-path: circle();
+  margin-right: 10px;
 }
 
-/* And displays the colored one on hover */
-.insta-icon:hover .insta-colored {
-    opacity: 1;
-    transition: opacity .5s;
+.photoSubtitle{
+  text-align: center;
 }
 
-/***** End of instagram icon bullshit *****/
-
-.custom-btn .whatsapp-icon:hover {
-    color: #33CC46;
+@media only screen and (max-width: 400px) {
+  .mobile-hide{
+    display: none !important; }
 }
 
-.custom-btn .reddit-icon:hover {
-    color: #FF4301;
+@media only screen and (max-width: 400px) {
+  .col-sm-12{
+    align-items: right;
+  }
+  .mobile{
+    display: list-item; !important; }
 }
 
-/* The transition here will handle the mouse-leave on all lines */
-.custom-btn a .custom-btn-line {
-    position: absolute;
-    transition: transform .5s;
+@media only screen and (min-width: 500px) {
+  .desktop-hide{
+    display: none !important; }
 }
 
-/* Sets the horizontal lines */
-.custom-btn a .custom-btn-line:nth-child(1),
-.custom-btn a .custom-btn-line:nth-child(3) {
-    width: 100%;
-    height: 1px;
-    background: #707070;
-}
+  /***** Trying to do some magic ( got it (: ) *****/
 
-/* Sets the top line position
-    the transform-origin here handles when it has to show up again
-    that's the same for every other line
-    it will always be the opposite from where it's going to hide/show on hover */
-.custom-btn a .custom-btn-line:nth-child(1) {
-    top: 0;
-    left: 0;
-    transform-origin: right;
-}
+  /* Removes the dot that usually floats on the left of <li> */
+  .custom-btn {
+      list-style: none;
+  }
 
-/* Scales down the span from the right to the left on hover
-    the scaleX will make sure the arrow hides in the X-axis
-    otherwise the line would become too thin to see while it hides */
-.custom-btn a:hover .custom-btn-line:nth-child(1) {
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .5s;
-}
+  /* To modify the button scale properly the width, height and line-height must be the same
+      font-size looks cool if you the width and divide by 2
+      The margin between the buttons is set here too */
+  .custom-btn a {
+      display: block;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 24px;
+      text-align: center;
+      text-decoration: none;
+      color: #ffffff;
+      margin: 0 10px;
+      transition: color .5s;
+      transition: background .7s;
+  }
 
-/* Sets the bottom line position */
-.custom-btn a .custom-btn-line:nth-child(3) {
-    bottom: 0;
-    left: 0;
-    transform-origin: left;
-}
+  .custom-btn a:hover {
+      background: #1b2727;
+      transition: background .7s;
+  }
 
-/* Scales down the span from the left to the right on hover */
-.custom-btn a:hover .custom-btn-line:nth-child(3) {
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform .5s;
-}
+  .custom-btn .fb-icon:hover {
+      color: #3b5998;
+      transition: color .5s;
+  }
 
-/* Sets the vertical lines */
-.custom-btn a .custom-btn-line:nth-child(2),
-.custom-btn a .custom-btn-line:nth-child(4) {
-    width: 1px;
-    height: 100%;
-    background: #707070;
-}
+  /***** Insta-icon is kinda special bcuz of the gradient *****/
+  /* First i had to position it on the center */
+  .insta-icon img {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      transition: opacity .5s;
+  }
 
-/* Sets the left line position and hides it for now */
-.custom-btn a .custom-btn-line:nth-child(2) {
-    top: 0;
-    left: 0;
-    transform: scaleY(0);
-    transform-origin: bottom;
-}
+  /* Then make the second image hidden */
+  .insta-icon .insta-colored {
+      opacity: 0;
+  }
 
-/* Show/Scales up the line from the top to the bottom */
-.custom-btn a:hover .custom-btn-line:nth-child(2) {
-    transform: scaleY(1);
-    transform-origin: top;
-    transition: transform .5s;
-}
+  /* This hides the instagram all black logo */
+  .insta-icon:hover .insta-b {
+      opacity: 0;
+      transition: opacity .5s;
+  }
 
-/* Sets the right line position and hides it for now */
-.custom-btn a .custom-btn-line:nth-child(4) {
-    top: 0;
-    right: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-}
+  /* And displays the colored one on hover */
+  .insta-icon:hover .insta-colored {
+      opacity: 1;
+      transition: opacity .5s;
+  }
 
-/* Show/Scales up the line from the bottom to the top */
-.custom-btn a:hover .custom-btn-line:nth-child(4) {
-    transform: scaleY(1);
-    transform-origin: bottom;
-    transition: transform .5s;
-}
+  /***** End of instagram icon bullshit *****/
 
-/***** End of Custom Button CSS *****/
+  .custom-btn .whatsapp-icon:hover {
+      color: #33CC46;
+  }
 
-/***** Second custom btn for text content *****/
+  .custom-btn .envelope-icon:hover {
+      color: #dc3545;
+  }
 
-/* Removes the dot that usually floats on the left of <li> */
-.custom-btn-long {
-    list-style: none;
-    margin: 5px 0;
-}
+  /* The transition here will handle the mouse-leave on all lines */
+  .custom-btn a .custom-btn-line {
+      position: absolute;
+      transition: transform .5s;
+  }
 
-.custom-btn-long a {
-    display: block;
-    position: relative;
-    text-decoration: none;
-    text-align: center;
-    padding: 10px;
-    color: #ffffff;
-    transition: color .5s;
-    transition: background .7s;
-}
+  /* Sets the horizontal lines */
+  .custom-btn a .custom-btn-line:nth-child(1),
+  .custom-btn a .custom-btn-line:nth-child(3) {
+      width: 100%;
+      height: 1px;
+      background: #707070;
+  }
 
-.custom-btn-long a:hover {
-    background: #1b2727;
-    transition: background .7s;
-}
+  /* Sets the top line position
+      the transform-origin here handles when it has to show up again
+      that's the same for every other line
+      it will always be the opposite from where it's going to hide/show on hover */
+  .custom-btn a .custom-btn-line:nth-child(1) {
+      top: 0;
+      left: 0;
+      transform-origin: right;
+  }
 
-/* The transition here will handle the mouse-leave on all lines */
-.custom-btn-long a .custom-btn-line {
-    position: absolute;
-    transition: transform .5s;
-}
+  /* Scales down the span from the right to the left on hover
+      the scaleX will make sure the arrow hides in the X-axis
+      otherwise the line would become too thin to see while it hides */
+  .custom-btn a:hover .custom-btn-line:nth-child(1) {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .5s;
+  }
 
-/* Sets the horizontal lines */
-.custom-btn-long a .custom-btn-line:nth-child(1),
-.custom-btn-long a .custom-btn-line:nth-child(3) {
-    width: 100%;
-    height: 1px;
-    background: #707070;
-}
+  /* Sets the bottom line position */
+  .custom-btn a .custom-btn-line:nth-child(3) {
+      bottom: 0;
+      left: 0;
+      transform-origin: left;
+  }
 
-/* Sets the top line position
-    the transform-origin here handles when it has to show up again
-    that's the same for every other line
-    it will always be the opposite from where it's going to hide/show on hover */
-.custom-btn-long a .custom-btn-line:nth-child(1) {
-    top: 0;
-    left: 0;
-    transform-origin: right;
-}
+  /* Scales down the span from the left to the right on hover */
+  .custom-btn a:hover .custom-btn-line:nth-child(3) {
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .5s;
+  }
 
-/* Scales down the span from the right to the left on hover
-    the scaleX will make sure the arrow hides in the X-axis
-    otherwise the line would become too thin to see while it hides */
-.custom-btn-long a:hover .custom-btn-line:nth-child(1) {
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .5s;
-}
+  /* Sets the vertical lines */
+  .custom-btn a .custom-btn-line:nth-child(2),
+  .custom-btn a .custom-btn-line:nth-child(4) {
+      width: 1px;
+      height: 100%;
+      background: #707070;
+  }
 
-/* Sets the bottom line position */
-.custom-btn-long a .custom-btn-line:nth-child(3) {
-    bottom: 0;
-    left: 0;
-    transform-origin: left;
-}
+  /* Sets the left line position and hides it for now */
+  .custom-btn a .custom-btn-line:nth-child(2) {
+      top: 0;
+      left: 0;
+      transform: scaleY(0);
+      transform-origin: bottom;
+  }
 
-/* Scales down the span from the left to the right on hover */
-.custom-btn-long a:hover .custom-btn-line:nth-child(3) {
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform .5s;
-}
+  /* Show/Scales up the line from the top to the bottom */
+  .custom-btn a:hover .custom-btn-line:nth-child(2) {
+      transform: scaleY(1);
+      transform-origin: top;
+      transition: transform .5s;
+  }
 
-/* Sets the vertical lines */
-.custom-btn-long a .custom-btn-line:nth-child(2),
-.custom-btn-long a .custom-btn-line:nth-child(4) {
-    width: 1px;
-    height: 100%;
-    background: #707070;
-}
+  /* Sets the right line position and hides it for now */
+  .custom-btn a .custom-btn-line:nth-child(4) {
+      top: 0;
+      right: 0;
+      transform: scaleY(0);
+      transform-origin: top;
+  }
 
-/* Sets the left line position and hides it for now */
-.custom-btn-long a .custom-btn-line:nth-child(2) {
-    top: 0;
-    left: 0;
-    transform: scaleY(0);
-    transform-origin: bottom;
-}
-
-/* Show/Scales up the line from the top to the bottom */
-.custom-btn-long a:hover .custom-btn-line:nth-child(2) {
-    transform: scaleY(1);
-    transform-origin: top;
-    transition: transform .5s;
-}
-
-/* Sets the right line position and hides it for now */
-.custom-btn-long a .custom-btn-line:nth-child(4) {
-    top: 0;
-    right: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-}
-
-/* Show/Scales up the line from the bottom to the top */
-.custom-btn-long a:hover .custom-btn-line:nth-child(4) {
-    transform: scaleY(1);
-    transform-origin: bottom;
-    transition: transform .5s;
-}
-
-/***** End of Custom Button for text CSS *****/
+  /* Show/Scales up the line from the bottom to the top */
+  .custom-btn a:hover .custom-btn-line:nth-child(4) {
+      transform: scaleY(1);
+      transform-origin: bottom;
+      transition: transform .5s;
+  }
+  /***** End of Custom Button CSS *****/
