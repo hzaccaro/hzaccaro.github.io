@@ -232,6 +232,13 @@ body {
   text-align: center;
 }
 
+@media only screen and (max-width: 736px){
+  .display-flex{
+    width: 100%;
+
+  }
+}
+
 @media only screen and (max-width: 400px) {
   .mobile-hide{
     display: none !important; }
@@ -242,7 +249,8 @@ body {
     align-items: right;
   }
   .mobile{
-    display: list-item; !important; }
+    display: list-item; !important;
+  }
 }
 
 @media only screen and (min-width: 500px) {
