@@ -1,3 +1,18 @@
+:root {
+    --h1-white: #F5F5F5;
+    --h1-black: #111;
+    --h1-primary: #008080;
+    --h2-white: #F5F5F5;
+    --h2-black: #111;
+    --h2-primary: #008080;
+    --h3-white: #F5F5F5;
+    --h3-black: #111;
+    --h3-primary: #008080;
+    --h4-white: #F5F5F5;
+    --h4-black: #111;
+    --h4-primary: #008080;
+}
+
 body {
     overflow-y: scroll;
     padding-top: 64px;
@@ -50,22 +65,9 @@ body {
     color: whitesmoke;
 }
 
-.cover-full {
-    height: 80vh;
-}
-
-.cover-full .row {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    justify-content: center;
-    text-align: center;
-}
-
 .title-highlight {
     text-align: center;
-    padding: 50px 0px 50px 0px;
+    padding: 2rem 10px;
     color: #008080;
     font-weight: 300;
     font-size: 3rem;
@@ -79,14 +81,10 @@ body {
     font-weight: 300;
 }
 
-.title-highlight small {
-    font-size: 1.2rem;
-}
-
 #contact {
     /* Fix padding/margin after finished */
     margin-top: 50px;
-    padding: 50px 5%;
+    padding: 50px 3rem;
     background: #101616;
     clip-path: polygon(0 0, 100% 7vw, 100% 100%, 0 100%);
 }
