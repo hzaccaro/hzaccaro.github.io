@@ -123,16 +123,6 @@ body {
     }
 }
 
-.cover-img {
-    background: url(img/cover.png) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    width: 100%;
-    color: whitesmoke;
-}
-
 .title-highlight {
     text-align: center;
     padding: 2rem 10px;
