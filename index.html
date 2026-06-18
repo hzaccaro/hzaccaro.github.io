@@ -1,117 +1,362 @@
 <!doctype html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-
-    <title>Zaccaro</title>
-    <meta name="description" content="O melhor meio de expandir o seu negócio">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!--CSS stuff-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#002731">
+  <meta name="description" content="Portfólio profissional de Henry Zaccaro, desenvolvedor web e cofundador da Adapt IA, com experiência em WordPress, automação, dados, design e marketing digital.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Henry Zaccaro | Desenvolvedor Web e Cofundador da Adapt IA">
+  <meta property="og:description" content="Desenvolvimento web, automação e dados para criar soluções digitais com bases sólidas.">
+  <meta property="og:url" content="https://hzaccaro.github.io/">
+  <meta property="og:site_name" content="Henry Zaccaro">
+  <link rel="canonical" href="https://hzaccaro.github.io/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <title>Henry Zaccaro | Desenvolvedor Web e Cofundador da Adapt IA</title>
 </head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-<body id="top" data-spy="scroll" data-target="#navbar">
-    <nav id="navbar" class="navbar fixed-top navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="#top">Zaccaro</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sua marca digital</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Layouts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contato</a>
-                </li>
-            </ul>
-        </div>
+  <div class="page-grid" aria-hidden="true"></div>
+  <div class="backdrop" data-close-menu></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
+    <button class="sidebar-close" type="button" data-close-menu aria-label="Fechar menu">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22">
+        <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <button class="logo-lockup" type="button" data-logo aria-label="Reproduzir animação do logotipo HZ Zaccaro">
+      <span class="logo-symbol" aria-hidden="true">
+        <span class="logo-letter logo-h">H</span>
+        <span class="logo-letter logo-z">Z</span>
+      </span>
+      <span class="logo-name" aria-hidden="true">accaro</span>
+      <span class="logo-cover" aria-hidden="true"></span>
+      <span class="sr-only">HZ Zaccaro</span>
+    </button>
+
+    <div class="sidebar-intro">
+      <strong>Henry Zaccaro</strong>
+      <span>Desenvolvedor Web<br>e Cofundador da Adapt IA</span>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Seções do portfólio">
+      <span class="nav-label">Navegação</span>
+      <ol>
+        <li><a class="is-active" href="#inicio" aria-current="location"><b>01</b><span>Início</span></a></li>
+        <li><a href="#sobre"><b>02</b><span>Sobre</span></a></li>
+        <li><a href="#experiencia"><b>03</b><span>Experiência</span></a></li>
+        <li><a href="#competencias"><b>04</b><span>Competências</span></a></li>
+        <li><a href="#contato"><b>05</b><span>Contato</span></a></li>
+      </ol>
     </nav>
 
-    <!-- Top cover -->
-    <div class="container-fluid cover-img cover-full">
-        <div class="row">
-            <h1 class="display-3">Expanda o seu negócio</h1>
-            <p class="lead">Faça parte do mercado online e descubra novas possibilidades</p>
+    <div class="sidebar-footer">
+      <span class="availability-dot" aria-hidden="true"></span>
+      <span>Soluções digitais construídas<br>com clareza e consistência.</span>
+    </div>
+  </aside>
+
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Abrir menu">
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22">
+      <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span data-current-section>Início</span>
+  </button>
+
+  <main class="main" id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow"><span>Portfólio profissional</span></p>
+        <h1 id="hero-title">Desenvolvimento web com <em>estratégia, dados e base sólida.</em></h1>
+        <p class="hero-lead">Sou Henry Zaccaro, desenvolvedor web e cofundador da Adapt IA. Transformo necessidades de negócio em sites, automações e soluções digitais pensadas para continuar funcionando e evoluindo.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#experiencia">Conheça minha trajetória</a>
+          <a class="button button-secondary" href="#contato">Entre em contato</a>
         </div>
-    </div>
+        <ul class="hero-tags" aria-label="Áreas de atuação">
+          <li>Desenvolvimento web</li>
+          <li>WordPress</li>
+          <li>Automação</li>
+          <li>Dados e tracking</li>
+        </ul>
+      </div>
 
-    <!-- Description 1 -->
-    <div class="container">
-        <h1 class="title-highlight">Site em construção</h1>
-    </div>
+      <div class="hero-visual" aria-hidden="true">
+        <span class="visual-ring ring-one"></span>
+        <span class="visual-ring ring-two"></span>
+        <span class="visual-cross cross-one"></span>
+        <span class="visual-cross cross-two"></span>
+        <div class="visual-core">
+          <span>HZ</span>
+          <small>web · data · systems</small>
+        </div>
+        <span class="visual-node node-one">01</span>
+        <span class="visual-node node-two">10</span>
+        <span class="visual-node node-three">11</span>
+      </div>
+    </section>
 
-    <!-- Footer -->
-    <div id="contact">
-        <div class="container-fluid">
-            <h1 class="title-highlight">Contato / Sobre</h1>
-            <ul class="row align-items-center" style="padding: 0;">
-                <h5 class="title-highlight-sm col-12">Mídias sociais</h5>
-                <li class="custom-btn">
-                    <a class="fb-icon" href="https://www.facebook.com/" target="_blank">
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span><i class="fa fa-facebook"></i></span>
-                    </a>
-                </li>
-                <li class="custom-btn">
-                    <a class="insta-icon" href="https://www.instagram.com/" target="_blank">
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <img class="insta-b" src="img/insta-b.png" />
-                        <img class="insta-colored" src="img/insta.png" />
-                    </a>
-                </li>
-                <li class="custom-btn">
-                    <a class="reddit-icon" href="https://www.reddit.com/" target="_blank">
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span><i class="fa fa-reddit"></i></span>
-                    </a>
-                </li>
-                <li class="custom-btn">
-                    <a class="whatsapp-icon" href="#" target="_blank">
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span class="custom-btn-line"></span>
-                        <span><i class="fa fa-whatsapp"></i></span>
-                    </a>
-                </li>
+    <section class="section-card about" id="sobre" aria-labelledby="about-title">
+      <header class="section-header">
+        <div class="section-kicker"><span>02</span>Sobre</div>
+        <h2 id="about-title">Tecnologia como ferramenta para construir melhor.</h2>
+      </header>
+
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="lead">Minha trajetória reúne desenvolvimento, design, marketing, automação e análise de dados. Essa combinação me permite enxergar uma solução além da interface e conectar experiência, operação e resultado.</p>
+          <p>O interesse por matemática, filosofia e tecnologia começou cedo e se transformou em uma busca contínua por compreender problemas e criar caminhos mais eficientes. Hoje aplico esse repertório na construção de experiências digitais claras, processos consistentes e sistemas que apoiam decisões reais.</p>
+        </div>
+
+        <div class="principles" aria-label="Princípios de trabalho">
+          <article>
+            <span>01</span>
+            <div>
+              <h3>Fundação antes da pressa</h3>
+              <p>Estruturas duráveis reduzem retrabalho e permitem crescimento consistente.</p>
+            </div>
+          </article>
+          <article>
+            <span>02</span>
+            <div>
+              <h3>Engenharia com contexto</h3>
+              <p>A solução técnica precisa responder ao processo, ao mercado e às pessoas.</p>
+            </div>
+          </article>
+          <article>
+            <span>03</span>
+            <div>
+              <h3>Evolução orientada por dados</h3>
+              <p>Mensuração e análise transformam ajustes isolados em aprendizado contínuo.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card experience" id="experiencia" aria-labelledby="experience-title">
+      <header class="section-header">
+        <div class="section-kicker"><span>03</span>Experiência</div>
+        <h2 id="experience-title">Uma trajetória entre criação, tecnologia e operação.</h2>
+        <p>Cada etapa ampliou meu repertório para conectar desenvolvimento a necessidades concretas de negócio.</p>
+      </header>
+
+      <div class="timeline">
+        <article class="timeline-item featured">
+          <div class="timeline-date">2025 — Atual</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="role-heading">
+              <div>
+                <span class="company">Adapt IA</span>
+                <h3>Cofundador</h3>
+              </div>
+              <span class="current-tag">Atual</span>
+            </div>
+            <p>Cofundei a Adapt IA unindo minha especialidade técnica às habilidades comerciais de meu sócio. Desenvolvemos soluções para deficiências recorrentes em pequenas e médias empresas, priorizando fundações sólidas, sistemas duradouros, estudos de mercado, engenharia e análise de dados.</p>
+            <ul class="role-tags">
+              <li>Soluções digitais</li>
+              <li>Automação</li>
+              <li>Engenharia</li>
+              <li>Análise de dados</li>
             </ul>
-        </div>
-    </div>
+          </div>
+        </article>
 
+        <article class="timeline-item">
+          <div class="timeline-date">2023 — 2025</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="role-heading">
+              <div>
+                <span class="company">Joinvix</span>
+                <h3>Desenvolvedor Web</h3>
+              </div>
+            </div>
+            <p>Desenvolvimento de landing pages, sites institucionais e lojas virtuais, além da implementação e manutenção de tags de tracking. Atuação em ajustes, correções visuais, desenvolvimento de plugins para WordPress, suporte técnico e criação de soluções para agilizar processos internos.</p>
+            <ul class="role-tags">
+              <li>Landing pages</li>
+              <li>E-commerce</li>
+              <li>WordPress</li>
+              <li>Tracking</li>
+            </ul>
+          </div>
+        </article>
 
-    <!--Bootstrap JS-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+        <article class="timeline-item">
+          <div class="timeline-date">2022 — 2023</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="role-heading">
+              <div>
+                <span class="company">Plantae Soluções</span>
+                <h3>Marketing Digital</h3>
+              </div>
+            </div>
+            <p>SEO para sites e anúncios, criação de landing pages para a franqueadora, análise de mercado e histórico de campanhas. Produção de relatórios comparativos, templates HTML para e-mail marketing, iniciativas de inbound no Meta e criativos alinhados ao posicionamento da marca.</p>
+            <ul class="role-tags">
+              <li>SEO</li>
+              <li>Inbound marketing</li>
+              <li>HTML para e-mail</li>
+              <li>Análise de mercado</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">2020 — 2022</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="role-heading">
+              <div>
+                <span class="company">Fábrica Di Chocolate</span>
+                <h3>Designer e Desenvolvedor</h3>
+              </div>
+            </div>
+            <p>Criação de campanhas para inaugurações, planejamento de conteúdo, rebranding e materiais para quiosques. Desenvolvimento de automações para cardápios com Office 365 Power Automate e scripts do Illustrator, além de relatórios integrando Meta API e Power BI.</p>
+            <ul class="role-tags">
+              <li>Design</li>
+              <li>Automação</li>
+              <li>Meta API</li>
+              <li>Power BI</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">2018 — 2020</div>
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="role-heading">
+              <div>
+                <span class="company">Max Holding</span>
+                <h3>Desenvolvedor</h3>
+              </div>
+            </div>
+            <p>Elaboração de planilhas integradas a sistemas ERP e CMS, automação de processos empresariais e apoio à gestão de atividades. Implementação de controles em nuvem, organização de arquivos, relacionamento B2B e construção de relatórios em Power BI.</p>
+            <ul class="role-tags">
+              <li>ERP e CMS</li>
+              <li>Processos</li>
+              <li>Integrações</li>
+              <li>Power BI</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card skills" id="competencias" aria-labelledby="skills-title">
+      <header class="section-header">
+        <div class="section-kicker"><span>04</span>Competências</div>
+        <h2 id="skills-title">Repertório multidisciplinar para resolver o problema inteiro.</h2>
+      </header>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-icon" aria-hidden="true">&lt;/&gt;</div>
+          <h3>Desenvolvimento web</h3>
+          <p>Interfaces, páginas e operações digitais construídas para funcionar bem e permanecer fáceis de evoluir.</p>
+          <ul>
+            <li>Front-end</li>
+            <li>Landing pages</li>
+            <li>Sites institucionais</li>
+            <li>Lojas virtuais</li>
+            <li>WordPress e plugins</li>
+          </ul>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon" aria-hidden="true">01</div>
+          <h3>Dados e tracking</h3>
+          <p>Instrumentação e leitura de dados para compreender comportamento, campanha e desempenho.</p>
+          <ul>
+            <li>Tags de tracking</li>
+            <li>Power BI</li>
+            <li>Meta API</li>
+            <li>Relatórios comparativos</li>
+            <li>Análise de mercado</li>
+          </ul>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon" aria-hidden="true">↻</div>
+          <h3>Automação e processos</h3>
+          <p>Soluções para eliminar tarefas repetitivas e conectar ferramentas ao fluxo de trabalho.</p>
+          <ul>
+            <li>Automação de processos</li>
+            <li>Power Automate</li>
+            <li>Scripts do Illustrator</li>
+            <li>Integrações ERP e CMS</li>
+            <li>Suporte técnico</li>
+          </ul>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon" aria-hidden="true">◇</div>
+          <h3>Design e marketing</h3>
+          <p>Comunicação visual e estratégia digital conectadas à identidade e ao contexto de cada negócio.</p>
+          <ul>
+            <li>SEO e inbound</li>
+            <li>Meta e Google Ads</li>
+            <li>Photoshop e Illustrator</li>
+            <li>Premiere</li>
+            <li>Inglês</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="soft-skills">
+        <span>Comunicação</span>
+        <span>Criatividade</span>
+        <span>Colaboração</span>
+        <span>Flexibilidade</span>
+        <span>Aprendizado contínuo</span>
+        <span>Análise crítica</span>
+        <span>Empatia</span>
+      </div>
+    </section>
+
+    <section class="contact" id="contato" aria-labelledby="contact-title">
+      <div class="contact-copy">
+        <div class="section-kicker"><span>05</span>Contato</div>
+        <h2 id="contact-title">Vamos conversar sobre o próximo desafio?</h2>
+        <p>Se você precisa de uma presença digital mais consistente, um processo mais eficiente ou uma solução conectada aos dados do negócio, entre em contato.</p>
+      </div>
+
+      <div class="contact-links">
+        <a href="mailto:henryzaccaro@msn.com">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 6.5h18v11H3zM3.5 7l8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </span>
+          <span><small>E-mail</small><strong>henryzaccaro@msn.com</strong></span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/henry-zaccaro/" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon contact-icon-text" aria-hidden="true">in</span>
+          <span><small>LinkedIn</small><strong>/in/henry-zaccaro</strong></span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://wa.me/5547997561213" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="23" height="23"><path d="M12 3a8.5 8.5 0 0 0-7.4 12.7L3.5 20l4.4-1.1A8.5 8.5 0 1 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.6 8.2c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.8 1.8c.1.2.1.4 0 .6l-.6.8c-.1.2-.1.3 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5-.1l.8-1c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.4.4 0 .4-.2 1.3-.6 1.7-.4.5-1.2.8-2 .7-1.2-.1-3.1-.7-4.9-2.3-2.1-1.9-2.8-4.2-2.7-5.1.1-.5.3-.9.5-1.2Z" fill="currentColor"/></svg>
+          </span>
+          <span><small>WhatsApp</small><strong>(47) 99756-1213</strong></span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Henry Zaccaro <span aria-hidden="true">·</span> Desenvolvimento web, automação e dados.</p>
+      <a href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a>
+    </footer>
+  </main>
+
+  <script src="assets/script.js" defer></script>
 </body>
-
 </html>
