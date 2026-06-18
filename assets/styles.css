@@ -179,7 +179,7 @@ ol {
 }
 
 .logo-lockup {
-  --logo-cover-left: 52px;
+  --logo-cover-left: 56px;
   --logo-h-open-x: -3px;
   --logo-z-open-x: 24px;
   --logo-name-left: 68px;
@@ -303,7 +303,7 @@ ol {
 }
 
 .hero-logo-lockup {
-  --logo-cover-left: 58px;
+  --logo-cover-left: 84px;
   --logo-h-open-x: -5px;
   --logo-z-open-x: 35px;
   --logo-name-left: 100px;
@@ -1260,6 +1260,10 @@ body.menu-open .backdrop {
 
   .logo-lockup {
     width: calc(100% - 52px);
+  }
+
+  .sidebar .logo-lockup {
+    --logo-cover-left: 60px;
   }
 
   .hero-visual {
