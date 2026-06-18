@@ -10,7 +10,6 @@
   const mobileQuery = window.matchMedia('(max-width: 1024px)');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let logoTimer;
-  let mobileLogoPlayed = false;
 
   const replayLogo = () => {
     if (!logo || reduceMotion.matches) return;
@@ -39,11 +38,6 @@
     menuToggle.setAttribute('aria-expanded', 'true');
     sidebar.inert = false;
     sidebar.querySelector('.sidebar-close')?.focus({ preventScroll: true });
-
-    if (!mobileLogoPlayed) {
-      mobileLogoPlayed = true;
-      window.setTimeout(replayLogo, 120);
-    }
   };
 
   const closeMenu = (restoreFocus = false) => {
