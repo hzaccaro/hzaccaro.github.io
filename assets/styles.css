@@ -886,17 +886,37 @@ body.menu-open .backdrop {
 /* Experience */
 
 .timeline {
+  --timeline-start: 12px;
+  --timeline-length: calc(100% - 24px);
+  --timeline-progress: 0;
   position: relative;
 }
 
-.timeline::before {
+.timeline::before,
+.timeline::after {
   position: absolute;
-  top: 12px;
-  bottom: 12px;
-  left: 146px;
-  width: 1px;
+  top: var(--timeline-start);
+  height: var(--timeline-length);
   content: "";
-  background: linear-gradient(var(--accent), var(--line) 60%, transparent);
+  pointer-events: none;
+}
+
+.timeline::before {
+  left: 147.5px;
+  width: 1px;
+  background: var(--line);
+}
+
+.timeline::after {
+  left: 146.5px;
+  z-index: 1;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent-bright), var(--accent));
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(48, 214, 255, 0.58);
+  transform: scaleY(var(--timeline-progress));
+  transform-origin: top;
+  transition: transform 0.09s linear;
 }
 
 .timeline-item {
@@ -996,6 +1016,33 @@ body.menu-open .backdrop {
 .role-tags li {
   padding: 5px 9px;
   font-size: 0.63rem;
+}
+
+.timeline-cta {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  padding: 8px 11px;
+  margin-top: 18px;
+  color: var(--accent-bright);
+  background: rgba(0, 171, 213, 0.08);
+  border: 1px solid var(--line-accent);
+  border-radius: 11px;
+  font-size: 0.71rem;
+  font-weight: 800;
+  letter-spacing: 0.015em;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.timeline-cta:hover {
+  color: var(--text);
+  background: rgba(0, 171, 213, 0.16);
+  border-color: rgba(48, 214, 255, 0.55);
+}
+
+.timeline-cta span {
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
 /* Skills */
@@ -1376,6 +1423,10 @@ body.menu-open .backdrop {
   }
 
   .timeline::before {
+    left: 7px;
+  }
+
+  .timeline::after {
     left: 6px;
   }
 
@@ -1518,6 +1569,10 @@ body.menu-open .backdrop {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .timeline::after {
+    transition: none !important;
   }
 
   .logo-lockup .logo-h {

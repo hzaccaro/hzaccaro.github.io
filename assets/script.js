@@ -7,6 +7,8 @@
   const navLinks = [...document.querySelectorAll('.sidebar-nav a')];
   const sections = [...document.querySelectorAll('main section[id]')];
   const currentSection = document.querySelector('[data-current-section]');
+  const timeline = document.querySelector('.timeline');
+  const timelineMarkers = timeline ? [...timeline.querySelectorAll('.timeline-marker')] : [];
   const mobileQuery = window.matchMedia('(max-width: 1024px)');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let logoTimer;
@@ -90,18 +92,44 @@
     });
 
     if (activeSection) setActiveSection(activeSection.id);
+  };
+
+  const updateTimelineProgress = () => {
+    if (!timeline || timelineMarkers.length < 2) return;
+
+    const timelineRect = timeline.getBoundingClientRect();
+    const firstMarkerRect = timelineMarkers[0].getBoundingClientRect();
+    const lastMarkerRect = timelineMarkers[timelineMarkers.length - 1].getBoundingClientRect();
+    const start = firstMarkerRect.top - timelineRect.top + (firstMarkerRect.height / 2);
+    const end = lastMarkerRect.top - timelineRect.top + (lastMarkerRect.height / 2);
+    const length = Math.max(end - start, 1);
+    const readingLine = window.innerHeight * 0.5;
+    const progress = Math.min(Math.max((readingLine - timelineRect.top - start) / length, 0), 1);
+
+    timeline.style.setProperty('--timeline-start', `${start}px`);
+    timeline.style.setProperty('--timeline-length', `${length}px`);
+    timeline.style.setProperty('--timeline-progress', progress.toFixed(4));
+  };
+
+  const updateScrollState = () => {
+    updateActiveSection();
+    updateTimelineProgress();
     scrollTicking = false;
   };
 
-  window.addEventListener('scroll', () => {
+  const queueScrollUpdate = () => {
     if (scrollTicking) return;
     scrollTicking = true;
-    window.requestAnimationFrame(updateActiveSection);
-  }, { passive: true });
+    window.requestAnimationFrame(updateScrollState);
+  };
+
+  window.addEventListener('scroll', queueScrollUpdate, { passive: true });
+  window.addEventListener('resize', queueScrollUpdate, { passive: true });
+  window.addEventListener('load', queueScrollUpdate, { once: true });
 
   mobileQuery.addEventListener('change', syncSidebarMode);
   syncSidebarMode();
-  updateActiveSection();
+  updateScrollState();
 
   if (!mobileQuery.matches) {
     window.setTimeout(replayLogo, 300);
