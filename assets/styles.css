@@ -304,8 +304,28 @@ ol {
 
 .hero-logo-lockup {
   --logo-cover-left: 58px;
-  --logo-name-closed-shift: 24px;
+  --logo-h-open-x: -5px;
+  --logo-z-open-x: 35px;
+  --logo-name-left: 100px;
+  --logo-name-closed-shift: 36px;
   display: none;
+}
+
+.hero-logo-lockup .logo-symbol {
+  width: 114px;
+}
+
+.hero-logo-lockup .logo-letter {
+  left: 29px;
+  font-size: 3.825rem;
+}
+
+.hero-logo-lockup .logo-z {
+  left: 32px;
+}
+
+.hero-logo-lockup .logo-name {
+  font-size: 2.49rem;
 }
 
 .sidebar-intro {
