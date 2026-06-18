@@ -179,6 +179,11 @@ ol {
 }
 
 .logo-lockup {
+  --logo-cover-left: 52px;
+  --logo-h-open-x: -3px;
+  --logo-z-open-x: 24px;
+  --logo-name-left: 68px;
+  --logo-name-closed-shift: 18px;
   position: relative;
   display: block;
   width: 100%;
@@ -241,21 +246,22 @@ ol {
 .logo-name {
   position: absolute;
   top: 50%;
-  left: 79px;
+  left: var(--logo-name-left);
   z-index: 1;
   color: var(--accent-bright);
   font-size: 1.66rem;
   font-weight: 700;
   letter-spacing: -0.055em;
-  transform: translateY(calc(-50% + 3px));
+  transform: translate(var(--logo-name-closed-shift), calc(-50% + 3px));
+  transition: transform 0.62s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .logo-cover {
   position: absolute;
   top: 0;
-  right: 0;
+  left: var(--logo-cover-left);
   z-index: 2;
-  width: 70%;
+  width: calc(100% - var(--logo-cover-left));
   height: 100%;
   background: #03252e;
   border-left: 4px solid var(--accent);
@@ -274,14 +280,20 @@ ol {
 .logo-lockup:focus-visible .logo-h,
 .logo-lockup.is-replaying .logo-h {
   color: var(--text);
-  transform: translate(-7px, -50%);
+  transform: translate(var(--logo-h-open-x), -50%);
 }
 
 .logo-lockup:hover .logo-z,
 .logo-lockup:focus-visible .logo-z,
 .logo-lockup.is-replaying .logo-z {
   color: var(--accent-bright);
-  transform: translate(29px, -50%);
+  transform: translate(var(--logo-z-open-x), -50%);
+}
+
+.logo-lockup:hover .logo-name,
+.logo-lockup:focus-visible .logo-name,
+.logo-lockup.is-replaying .logo-name {
+  transform: translate(0, calc(-50% + 3px));
 }
 
 .logo-lockup:hover .logo-cover,
@@ -291,6 +303,8 @@ ol {
 }
 
 .hero-logo-lockup {
+  --logo-cover-left: 58px;
+  --logo-name-closed-shift: 24px;
   display: none;
 }
 
@@ -749,7 +763,7 @@ body.menu-open .backdrop {
   }
   30%, 62% {
     color: var(--text);
-    transform: translate(-7px, -50%);
+    transform: translate(var(--logo-h-open-x), -50%);
   }
 }
 
@@ -760,7 +774,16 @@ body.menu-open .backdrop {
   }
   30%, 62% {
     color: var(--accent-bright);
-    transform: translate(29px, -50%);
+    transform: translate(var(--logo-z-open-x), -50%);
+  }
+}
+
+@keyframes logo-name-loop {
+  0%, 18%, 74%, 100% {
+    transform: translate(var(--logo-name-closed-shift), calc(-50% + 3px));
+  }
+  30%, 62% {
+    transform: translate(0, calc(-50% + 3px));
   }
 }
 
@@ -1255,6 +1278,11 @@ body.menu-open .backdrop {
     animation: logo-z-loop 7s cubic-bezier(0.19, 1, 0.22, 1) infinite;
   }
 
+  .sidebar .logo-lockup .logo-name,
+  .hero-logo-lockup .logo-name {
+    animation: logo-name-loop 7s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+  }
+
   .sidebar .logo-lockup .logo-cover,
   .hero-logo-lockup .logo-cover {
     animation: logo-cover-loop 7s cubic-bezier(0.15, 0.45, 0.255, 1) infinite;
@@ -1268,13 +1296,18 @@ body.menu-open .backdrop {
 
   .sidebar .logo-lockup.is-replaying .logo-h {
     animation: none;
-    transform: translate(-7px, -50%);
+    transform: translate(var(--logo-h-open-x), -50%);
   }
 
   .sidebar .logo-lockup.is-replaying .logo-z {
     animation: none;
     color: var(--accent-bright);
-    transform: translate(29px, -50%);
+    transform: translate(var(--logo-z-open-x), -50%);
+  }
+
+  .sidebar .logo-lockup.is-replaying .logo-name {
+    animation: none;
+    transform: translate(0, calc(-50% + 3px));
   }
 
   .sidebar .logo-lockup.is-replaying .logo-cover {
@@ -1465,12 +1498,16 @@ body.menu-open .backdrop {
 
   .logo-lockup .logo-h {
     color: var(--text);
-    transform: translate(-7px, -50%);
+    transform: translate(var(--logo-h-open-x), -50%);
   }
 
   .logo-lockup .logo-z {
     color: var(--accent-bright);
-    transform: translate(29px, -50%);
+    transform: translate(var(--logo-z-open-x), -50%);
+  }
+
+  .logo-lockup .logo-name {
+    transform: translate(0, calc(-50% + 3px));
   }
 
   .logo-lockup .logo-cover {
@@ -1480,6 +1517,7 @@ body.menu-open .backdrop {
   .logo-lockup::before,
   .logo-lockup .logo-h,
   .logo-lockup .logo-z,
+  .logo-lockup .logo-name,
   .logo-lockup .logo-cover {
     animation: none !important;
   }
