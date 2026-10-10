@@ -86,19 +86,14 @@
         </ul>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
-        <span class="visual-ring ring-one"></span>
-        <span class="visual-ring ring-two"></span>
-        <span class="visual-cross cross-one"></span>
-        <span class="visual-cross cross-two"></span>
-        <div class="logo-lockup hero-logo-lockup">
-          <span class="logo-symbol">
-            <span class="logo-letter logo-h">H</span>
-            <span class="logo-letter logo-z">Z</span>
-          </span>
-          <span class="logo-name">accaro</span>
-          <span class="logo-cover"></span>
+      <div class="hero-visual" data-intro-scene>
+        <div class="intro-fallback" aria-hidden="true"></div>
+        <canvas class="intro-canvas" aria-hidden="true"></canvas>
+        <div class="intro-caption" aria-hidden="true">
+          <span class="intro-caption-line"></span>
+          <span>Ideias em movimento.</span>
         </div>
+        <button class="intro-motion" type="button" aria-pressed="false" hidden>Pausar animação</button>
       </div>
     </section>
 
@@ -362,5 +357,6 @@
   </main>
 
   <script src="assets/script.js" defer></script>
+  <script type="module" src="assets/intro.js"></script>
 </body>
 </html>

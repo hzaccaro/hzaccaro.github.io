@@ -302,32 +302,6 @@ ol {
   transform: translateX(106%);
 }
 
-.hero-logo-lockup {
-  --logo-cover-left: 84px;
-  --logo-h-open-x: -5px;
-  --logo-z-open-x: 35px;
-  --logo-name-left: 100px;
-  --logo-name-closed-shift: 36px;
-  display: none;
-}
-
-.hero-logo-lockup .logo-symbol {
-  width: 114px;
-}
-
-.hero-logo-lockup .logo-letter {
-  left: 29px;
-  font-size: 3.825rem;
-}
-
-.hero-logo-lockup .logo-z {
-  left: 32px;
-}
-
-.hero-logo-lockup .logo-name {
-  font-size: 2.49rem;
-}
-
 .sidebar-intro {
   padding: 2px 4px 18px;
   border-bottom: 1px solid var(--line);
@@ -544,8 +518,8 @@ body.menu-open .backdrop {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(310px, 0.8fr);
-  gap: 30px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 20px;
   align-items: center;
   min-height: calc(100vh - 44px);
   padding: clamp(34px, 5.6vw, 76px);
@@ -601,7 +575,7 @@ body.menu-open .backdrop {
 .hero h1 {
   max-width: 790px;
   margin-bottom: 24px;
-  font-size: clamp(2.75rem, 6.5vw, 6rem);
+  font-size: clamp(2.75rem, 4.8vw, 5.2rem);
   font-weight: 780;
   line-height: 0.94;
   letter-spacing: -0.072em;
@@ -688,74 +662,94 @@ body.menu-open .backdrop {
   font-weight: 700;
 }
 
+/* The canvas owns all intro motion; these styles only frame the scene. */
 .hero-visual {
   position: relative;
   z-index: 1;
-  width: min(31vw, 355px);
-  aspect-ratio: 1;
-  margin-inline: auto;
+  width: calc(100% + 72px);
+  height: clamp(360px, 39vw, 550px);
+  margin-left: -36px;
+  isolation: isolate;
 }
 
-.visual-ring {
+.hero-visual::before {
   position: absolute;
-  border: 1px solid rgba(48, 214, 255, 0.22);
-  border-radius: 50%;
-}
-
-.ring-one {
-  inset: 8%;
-  animation: slow-spin 22s linear infinite;
-}
-
-.ring-one::before,
-.ring-two::before {
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  width: 9px;
-  height: 9px;
+  inset: 6% -5%;
+  z-index: -1;
   content: "";
-  background: var(--accent-bright);
-  border-radius: 50%;
-  box-shadow: 0 0 20px var(--accent);
+  background: radial-gradient(ellipse, rgba(25, 157, 189, 0.16), transparent 68%);
+  pointer-events: none;
 }
 
-.ring-two {
-  inset: 21%;
-  border-style: dashed;
-  animation: slow-spin 16s linear infinite reverse;
+.intro-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  touch-action: pan-y;
 }
 
-.ring-two::before {
-  top: auto;
-  right: 8%;
-  bottom: 6%;
-  left: auto;
-  width: 6px;
-  height: 6px;
+.hero-visual[data-render="ready"] .intro-canvas {
+  opacity: 1;
 }
 
-.visual-cross {
+.intro-fallback {
   position: absolute;
-  background: rgba(48, 214, 255, 0.16);
+  inset: 22% 18%;
+  background:
+    radial-gradient(ellipse at 29% 24%, #e1faff 0%, #70cee0 15%, transparent 42%),
+    linear-gradient(145deg, #ade6ee 2%, #1b8ea9 35%, #063c53 60%, #39c7e6 85%, #b4f5ff);
+  border: 1px solid rgba(164, 237, 255, 0.4);
+  border-radius: 43% 57% 64% 36% / 40% 37% 63% 60%;
+  box-shadow: inset -18px -12px 35px #032b44, 0 0 70px rgba(48, 214, 255, 0.08);
+  transform: rotate(-22deg);
+  pointer-events: none;
 }
 
-.cross-one {
-  top: 50%;
-  left: 2%;
-  width: 96%;
+.hero-visual[data-render="ready"] .intro-fallback {
+  display: none;
+}
+
+.intro-caption {
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  left: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.intro-caption-line {
+  width: 20px;
   height: 1px;
+  background: var(--accent);
 }
 
-.cross-two {
-  top: 2%;
-  left: 50%;
-  width: 1px;
-  height: 96%;
+.intro-motion {
+  position: absolute;
+  right: 50%;
+  bottom: -4px;
+  padding: 7px 10px;
+  color: var(--muted);
+  background: rgba(0, 25, 32, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.63rem;
+  white-space: nowrap;
+  transform: translateX(50%);
+  cursor: pointer;
 }
 
-@keyframes slow-spin {
-  to { transform: rotate(360deg); }
+.intro-motion:hover {
+  color: var(--text);
+  border-color: var(--line-accent);
 }
 
 @keyframes logo-shine-loop {
@@ -1270,16 +1264,13 @@ body.menu-open .backdrop {
 
 @media (max-width: 1180px) {
   .hero {
-    grid-template-columns: 1fr minmax(260px, 0.62fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   }
 
   .hero h1 {
-    font-size: clamp(2.7rem, 6vw, 4.7rem);
+    font-size: clamp(2.6rem, 4.5vw, 4.7rem);
   }
 
-  .hero-visual {
-    width: min(29vw, 310px);
-  }
 }
 
 @media (max-width: 1024px) {
@@ -1313,49 +1304,23 @@ body.menu-open .backdrop {
     --logo-cover-left: 60px;
   }
 
-  .hero-visual {
-    display: flex;
-    min-height: 120px;
-    aspect-ratio: auto;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-visual .visual-ring,
-  .hero-visual .visual-cross {
-    display: none;
-  }
-
-  .hero-logo-lockup {
-    display: block;
-    width: 100%;
-    max-width: 320px;
-    height: 88px;
-    margin-inline: auto;
-  }
-
-  .sidebar .logo-lockup::before,
-  .hero-logo-lockup::before {
+  .sidebar .logo-lockup::before {
     animation: logo-shine-loop 7s linear infinite;
   }
 
-  .sidebar .logo-lockup .logo-h,
-  .hero-logo-lockup .logo-h {
+  .sidebar .logo-lockup .logo-h {
     animation: logo-h-loop 7s cubic-bezier(0.19, 1, 0.22, 1) infinite;
   }
 
-  .sidebar .logo-lockup .logo-z,
-  .hero-logo-lockup .logo-z {
+  .sidebar .logo-lockup .logo-z {
     animation: logo-z-loop 7s cubic-bezier(0.19, 1, 0.22, 1) infinite;
   }
 
-  .sidebar .logo-lockup .logo-name,
-  .hero-logo-lockup .logo-name {
+  .sidebar .logo-lockup .logo-name {
     animation: logo-name-loop 7s cubic-bezier(0.19, 1, 0.22, 1) infinite;
   }
 
-  .sidebar .logo-lockup .logo-cover,
-  .hero-logo-lockup .logo-cover {
+  .sidebar .logo-lockup .logo-cover {
     animation: logo-cover-loop 7s cubic-bezier(0.15, 0.45, 0.255, 1) infinite;
   }
 
@@ -1413,8 +1378,10 @@ body.menu-open .backdrop {
   }
 
   .hero-visual {
-    width: min(72vw, 330px);
-    margin-top: 8px;
+    grid-row: 1;
+    width: min(100%, 490px);
+    height: 390px;
+    margin: -45px auto 20px;
   }
 
   .about-grid,
@@ -1488,7 +1455,9 @@ body.menu-open .backdrop {
   }
 
   .hero-visual {
-    width: min(80vw, 295px);
+    width: calc(100% + 28px);
+    height: 320px;
+    margin: -35px -14px 12px;
   }
 
   .section-card,
