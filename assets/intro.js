@@ -6,7 +6,6 @@ import { createBloom } from './bloom.js';
 const host = document.querySelector('[data-intro-scene]');
 const stage = host?.querySelector('.intro-stage');
 const canvas = host?.querySelector('canvas');
-const motionButton = document.querySelector('.intro-motion');
 const marker = document.querySelector('.hero-logo-space');
 const hero = document.querySelector('.hero');
 let renderLayout = () => {};
@@ -27,7 +26,7 @@ function updateBackdrop() {
   renderLayout();
 }
 
-if (host && canvas && stage && motionButton && marker && hero) {
+if (host && canvas && stage && marker && hero) {
   window.addEventListener('scroll', () => {
     if (scrollFrame === null) scrollFrame = requestAnimationFrame(updateBackdrop);
   }, { passive: true });
@@ -64,6 +63,7 @@ function createLogo(renderer) {
     uniform vec2 pointer;
     attribute vec3 pieceOffset;
     attribute vec2 pieceCenter, pieceMotion;
+    attribute vec4 pieceWave;
     float gravity(vec2 p) {
       vec2 offset = p - pointer;
       return interaction * motion / (1.0 + dot(offset, offset) * 2.8);
@@ -71,17 +71,24 @@ function createLogo(renderer) {
     vec3 assemble(vec3 p) {
       float progress = clamp((introTime - pieceMotion.x) / 2.6, 0.0, 1.0);
       float remaining = pow(1.0 - progress, 3.0) * fragmented;
-      float angle = pieceMotion.y * remaining;
+      // A continuous wave per piece persists after the opening settles.
+      float phase = time * pieceWave.y + pieceWave.x;
+      float wave = sin(phase);
+      float crossWave = sin(phase * 0.73 + pieceWave.x * 0.37);
+      float amplitude = pieceWave.z * smoothstep(0.0, 0.9, introTime) * fragmented * motion;
+      float angle = pieceMotion.y * remaining + wave * amplitude * 0.3;
       mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
       p.xy = pieceCenter + rotate * (p.xy - pieceCenter);
       p += pieceOffset * remaining;
       p.y += sin(progress * 3.141593) * pieceMotion.y * fragmented * 0.25;
+      p += vec3(cos(pieceWave.w) * wave, sin(pieceWave.w) * crossWave,
+        sin(phase + 1.570796) * 1.6) * amplitude;
       return p;
     }
     vec3 deform(vec3 p) {
       float attraction = gravity(p.xy);
       p.xy += (pointer - p.xy) * attraction * 0.15;
-      p.z += attraction * 1.1 + motion * 0.025 * sin(p.x * 2.0 + p.y + time * 0.6);
+      p.z += attraction * 1.1 + (1.0 - fragmented) * motion * 0.025 * sin(p.x * 2.0 + p.y + time * 0.6);
       return p;
     }`;
   const palette = `
@@ -93,7 +100,7 @@ function createLogo(renderer) {
       vec3 first = mix(colorA, colorB, 0.5 + 0.5 * sin(phase));
       return mix(first, colorC, 0.3 + 0.25 * sin(phase + 2.1));
     }`;
-  const defaults = { pieceOffset: [0,0,0], pieceCenter: [0,0], pieceMotion: [0,0] };
+  const defaults = { pieceOffset: [0,0,0], pieceCenter: [0,0], pieceMotion: [0,0], pieceWave: [0,0,0,0] };
   function lineMaterial(opacity, fragmented = false, ambient = false) {
     return new THREE.ShaderMaterial({
       uniforms: { ...(ambient ? fieldUniforms : uniforms), opacity: { value: opacity }, fragmented: { value: fragmented ? 1 : 0 } },
@@ -147,9 +154,9 @@ function createLogo(renderer) {
     });
   }
   const geometry = createLogoGeometry();
-  const outlineMaterial = lineMaterial(0.5);
-  const bridgeMaterial = lineMaterial(0.08);
-  const veilMaterial = lineMaterial(0);
+  const outlineMaterial = lineMaterial(0.5, true);
+  const bridgeMaterial = lineMaterial(0.08, true);
+  const veilMaterial = lineMaterial(0, true);
   veilMaterial.side = THREE.DoubleSide;
   logo.add(new THREE.LineSegments(geometry.lines, lineMaterial(0.19, true)),
     new THREE.LineSegments(geometry.outlines, outlineMaterial),
@@ -168,13 +175,13 @@ function createLogo(renderer) {
   let targetInteraction = 0;
   let elapsed = 0, introElapsed = 0;
   let previousTime = null, frame = null;
-  let paused = false, contextLost = false;
+  let contextLost = false;
   let touchReleaseTimer;
   let lastReducedMotion = reducedMotion.matches;
   let baseScale = 1;
   let viewport = { width: 1, height: 1, left: 0, top: 0 };
   let pointerX = 0, pointerY = 0, hasPointer = false;
-  const canAnimate = () => !paused && !reducedMotion.matches && !document.hidden && !contextLost;
+  const canAnimate = () => !reducedMotion.matches && !document.hidden && !contextLost;
 
   function pose(delta) {
     if (canAnimate()) { elapsed += delta; introElapsed = Math.min(3.1, introElapsed + delta); }
@@ -219,10 +226,7 @@ function createLogo(renderer) {
     frame = null; previousTime = null;
     lastReducedMotion = reducedMotion.matches;
     if (reducedMotion.matches) introElapsed = 3.1;
-    motionButton.hidden = contextLost || reducedMotion.matches;
-    host.dataset.motion = document.body.dataset.sceneMotion = reducedMotion.matches || paused ? 'still' : 'active';
-    motionButton.setAttribute('aria-pressed', String(paused));
-    motionButton.textContent = paused ? 'Retomar animação' : 'Pausar animação';
+    host.dataset.motion = document.body.dataset.sceneMotion = reducedMotion.matches ? 'still' : 'active';
     if (contextLost) return;
     pose(0);
     if (canAnimate()) frame = requestAnimationFrame(tick);
@@ -280,7 +284,6 @@ function createLogo(renderer) {
   document.documentElement.addEventListener('pointerleave', event => {
     if (event.pointerType === 'mouse') releasePointer();
   });
-  motionButton.addEventListener('click', () => { paused = !paused; releasePointer(); syncAnimation(); });
   reducedMotion.addEventListener('change', () => { releasePointer(); syncAnimation(); });
   document.addEventListener('visibilitychange', () => { releasePointer(); syncAnimation(); });
   window.addEventListener('pageshow', syncAnimation);

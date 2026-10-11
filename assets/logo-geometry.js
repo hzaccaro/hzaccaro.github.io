@@ -4,67 +4,84 @@ const contours = [
   [[-1.85,-1.15],[-1.47,-1.15],[-1.47,-0.19],[-0.65,-0.19],[-0.65,-1.15],[-0.27,-1.15],[-0.27,1.15],[-0.65,1.15],[-0.65,0.19],[-1.47,0.19],[-1.47,1.15],[-1.85,1.15]],
   [[0.12,1.15],[1.85,1.15],[1.85,0.79],[0.63,-0.77],[1.85,-0.77],[1.85,-1.15],[0.12,-1.15],[0.12,-0.79],[1.34,0.77],[0.12,0.77]],
 ];
+const bandAt = y => THREE.MathUtils.clamp(Math.floor((y+1.15)/(2.3/6)),0,5);
 
-// Static vertex attributes let twelve pieces assemble entirely on the GPU.
-// All pieces share one line draw and one point draw, rather than separate meshes.
+// Each rigid fragment carries its own phase, frequency, amplitude and direction.
+// Static attributes keep the entire animation on the GPU, with no vertex uploads.
 export function createLogoGeometry() {
-  const lines = [], points = [], offsets = [], centers = [], motions = [];
-  const lineOffsets = [], lineCenters = [], lineMotions = [];
-  const edges = new Set(), nodes = new Set(), outlines = [], faces = [];
-  const nodeSets = [];
-  contours.forEach((contour, letter) => {
+  const batches = Object.fromEntries(['lines','points','outlines','bridges','veil'].map(name =>
+    [name, {positions:[],offsets:[],centers:[],motions:[],waves:[]} ]));
+  const edges = new Set(), nodes = new Set(), nodeSets = [];
+  const pieces = contours.map((_,letter) => Array.from({length:6},(_,band) => {
+    const id = letter*6+band;
+    return {
+      id,
+      center:[letter ? 0.985 : -1.06, -1.15+(band+0.5)*2.3/6],
+      offset:[(letter ? 1 : -1)*(0.55+0.55*Math.sin(id*2.17)**2),Math.sin(id*1.7)*0.85,-0.4-Math.cos(id*1.3)**2],
+      motion:[(band%3)*0.09+letter*0.12,Math.sin(id*2.4)*0.5],
+      // Deterministic parameters avoid synchronized motion or per-frame randomness.
+      wave:[id*2.399963,0.58+0.25*(0.5+0.5*Math.sin(id*1.91)),0.08+0.065*(0.5+0.5*Math.sin(id*2.73)),id*1.618034],
+    };
+  }));
+  function append(name, point, piece) {
+    const batch=batches[name];
+    batch.positions.push(...point);batch.offsets.push(...piece.offset);
+    batch.centers.push(...piece.center);batch.motions.push(...piece.motion);batch.waves.push(...piece.wave);
+  }
+  contours.forEach((contour,letter) => {
     const letterNodes = [];
-    const mesh = lattice(contour, 0.14);
-    const input = mesh.attributes.position;
-    for (let i = 0; i < input.count; i += 3) {
-      const triangle = [0,1,2].map(n => [input.getX(i+n),input.getY(i+n),input.getZ(i+n)]);
-      const y = triangle.reduce((sum,p)=>sum+p[1],0)/3;
-      const band = THREE.MathUtils.clamp(Math.floor((y+1.15)/(2.3/6)),0,5);
-      const id = letter*6+band;
-      const center = [letter ? 0.985 : -1.06, -1.15+(band+0.5)*2.3/6];
-      const offset = [(letter ? 1 : -1)*(0.55+0.55*Math.sin(id*2.17)**2),Math.sin(id*1.7)*0.85,-0.4-Math.cos(id*1.3)**2];
-      const motion = [(band%3)*0.09+letter*0.12,Math.sin(id*2.4)*0.5];
-      for (let vertex = 0; vertex < 3; vertex++) {
-        const a = triangle[vertex], b = triangle[(vertex+1)%3];
-        const key = p => p.map(v=>v.toFixed(4)).join(',');
-        const nodeKey = `${id}:${key(a)}`;
-        if (!nodes.has(nodeKey)) {
-          nodes.add(nodeKey);points.push(...a);offsets.push(...offset);centers.push(...center);motions.push(...motion);
-          letterNodes.push(a);
+    const mesh = lattice(contour,0.14), input=mesh.attributes.position;
+    const key = point => point.map(value=>value.toFixed(4)).join(',');
+    for(let i=0;i<input.count;i+=3) {
+      const triangle=[0,1,2].map(n=>[input.getX(i+n),input.getY(i+n),input.getZ(i+n)]);
+      const piece=pieces[letter][bandAt(triangle.reduce((sum,p)=>sum+p[1],0)/3)];
+      for(let vertex=0;vertex<3;vertex++) {
+        const a=triangle[vertex],b=triangle[(vertex+1)%3];
+        append('veil',a,piece);
+        const nodeKey=`${piece.id}:${key(a)}`;
+        if(!nodes.has(nodeKey)) {
+          nodes.add(nodeKey);append('points',a,piece);letterNodes.push({point:a,piece});
         }
-        const edgeKey = `${id}:${[key(a),key(b)].sort().join('|')}`;
-        if (!edges.has(edgeKey)) {
-          edges.add(edgeKey);lines.push(...a,...b);lineOffsets.push(...offset,...offset);lineCenters.push(...center,...center);lineMotions.push(...motion,...motion);
-        }
+        const edgeKey=`${piece.id}:${[key(a),key(b)].sort().join('|')}`;
+        if(!edges.has(edgeKey)) {edges.add(edgeKey);append('lines',a,piece);append('lines',b,piece);}
       }
     }
-    mesh.dispose();
-    nodeSets.push(letterNodes);
-    contour.forEach(([x,y],index)=>outlines.push(x,y,0,...contour[(index+1)%contour.length],0));
-    const shape = new THREE.ShapeGeometry(new THREE.Shape(contour.map(([x,y])=>new THREE.Vector2(x,y))));
-    faces.push(...shape.attributes.position.array);
-    shape.dispose();
+    mesh.dispose();nodeSets.push(letterNodes);
+    // Split contours at fragment boundaries so outlines travel with their pieces.
+    contour.forEach(([x,y],index) => {
+      const [nextX,nextY]=contour[(index+1)%contour.length],cuts=[0,1];
+      if(nextY!==y)for(let band=1;band<6;band++) {
+        const t=(-1.15+band*2.3/6-y)/(nextY-y);
+        if(t>0&&t<1)cuts.push(t);
+      }
+      cuts.sort((a,b)=>a-b);
+      for(let i=0;i<cuts.length-1;i++) {
+        const start=cuts[i],end=cuts[i+1];
+        const piece=pieces[letter][bandAt(y+(nextY-y)*(start+end)/2)];
+        append('outlines',[x+(nextX-x)*start,y+(nextY-y)*start,0],piece);
+        append('outlines',[x+(nextX-x)*end,y+(nextY-y)*end,0],piece);
+      }
+    });
   });
-  const bridges = [];
-  const hEdge = nodeSets[0].filter(([x])=>x>-0.5).sort((a,b)=>a[1]-b[1]);
-  const zEdge = nodeSets[1].filter(([x])=>x<0.5);
-  for (let i=0;i<hEdge.length;i+=4) {
+  const hEdge=nodeSets[0].filter(({point})=>point[0]>-0.5).sort((a,b)=>a.point[1]-b.point[1]);
+  const zEdge=nodeSets[1].filter(({point})=>point[0]<0.5);
+  for(let i=0;i<hEdge.length;i+=4) {
     const start=hEdge[i];let nearest,distance=Infinity;
     for(const end of zEdge) {
-      const candidate=Math.hypot(start[0]-end[0],start[1]-end[1]);
+      const candidate=Math.hypot(start.point[0]-end.point[0],start.point[1]-end.point[1]);
       if(candidate<distance){nearest=end;distance=candidate;}
     }
-    if(nearest&&distance<0.75)bridges.push(...start,...nearest);
+    if(nearest&&distance<0.75) {
+      append('bridges',start.point,start.piece);append('bridges',nearest.point,nearest.piece);
+    }
   }
-  const attributes = (geometry, offset, center, motion) => geometry
-    .setAttribute('pieceOffset',new THREE.Float32BufferAttribute(offset,3))
-    .setAttribute('pieceCenter',new THREE.Float32BufferAttribute(center,2))
-    .setAttribute('pieceMotion',new THREE.Float32BufferAttribute(motion,2));
-  return {
-    lines: attributes(geometry(lines),lineOffsets,lineCenters,lineMotions),
-    points: attributes(geometry(points),offsets,centers,motions),
-    outlines: geometry(outlines), bridges: geometry(bridges), veil: geometry(faces),
-  };
+  return Object.fromEntries(Object.entries(batches).map(([name,batch]) => [name,
+    geometry(batch.positions)
+      .setAttribute('pieceOffset',new THREE.Float32BufferAttribute(batch.offsets,3))
+      .setAttribute('pieceCenter',new THREE.Float32BufferAttribute(batch.centers,2))
+      .setAttribute('pieceMotion',new THREE.Float32BufferAttribute(batch.motions,2))
+      .setAttribute('pieceWave',new THREE.Float32BufferAttribute(batch.waves,4)),
+  ]));
 }
 
 // A small, deterministic network covers the viewport, including space outside HZ.
