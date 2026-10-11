@@ -19,7 +19,19 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <div class="page-grid" aria-hidden="true"></div>
+  <div class="scene-background" data-intro-scene aria-hidden="true">
+    <div class="intro-stage">
+      <svg class="intro-fallback" viewBox="0 0 220 160">
+        <g fill="none" stroke="currentColor" stroke-width="0.6">
+          <path d="M24 24h18v46h40V24h18v112H82V88H42v48H24Z"/>
+          <path d="M120 24h76v18l-52 76h52v18h-76v-18l52-76h-52Z"/>
+          <path opacity=".35" d="M24 24l18 46-18 66 18-48 40-18 18 66-18-48 18-64M120 24l76 18-76 76 76 18-52-18 28-76Z"/>
+        </g>
+      </svg>
+      <canvas class="intro-canvas"></canvas>
+    </div>
+  </div>
+
   <div class="backdrop" data-close-menu></div>
 
   <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
@@ -71,38 +83,25 @@
   <main class="main" id="conteudo">
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="hero-content">
-        <p class="eyebrow"><span>Portfólio profissional</span></p>
-        <h1 id="hero-title">Desenvolvimento web com <em>estratégia, dados e base sólida.</em></h1>
-        <p class="hero-lead">Sou Henry Zaccaro, desenvolvedor web e cofundador da Adapt IA. Transformo necessidades de negócio em sites, automações e soluções digitais pensadas para continuar funcionando e evoluindo.</p>
+        <p class="eyebrow"><span>Henry Zaccaro · Portfólio</span></p>
+        <h1 id="hero-title">Conexões que <em>viram soluções.</em></h1>
+        <p class="hero-lead">Desenvolvimento web, automação e dados para transformar necessidades reais em soluções duradouras. Sou Henry Zaccaro, cofundador da Adapt IA.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#experiencia">Conheça minha trajetória</a>
           <a class="button button-secondary" href="#contato">Entre em contato</a>
         </div>
-        <ul class="hero-tags" aria-label="Áreas de atuação">
-          <li>Desenvolvimento web</li>
-          <li>WordPress</li>
-          <li>Automação</li>
-          <li>Dados e tracking</li>
-        </ul>
+
       </div>
 
-      <div class="hero-visual" data-intro-scene>
-        <div class="intro-stage">
-          <svg class="intro-fallback" viewBox="0 0 220 160" aria-hidden="true">
-            <g fill="none" stroke="currentColor" stroke-width="1.2">
-              <path d="M24 24h18v46h40V24h18v112H82V88H42v48H24Z"/>
-              <path d="M120 24h76v18l-52 76h52v18h-76v-18l52-76h-52Z"/>
-              <path opacity=".4" d="M24 24l18 46-18 66 18-48 40-18 18 66-18-48 18-64M120 24l76 18-76 76 76 18-52-18 28-76Z"/>
-            </g>
-          </svg>
-          <canvas class="intro-canvas" aria-hidden="true"></canvas>
-        </div>
+      <div class="hero-visual">
+        <div class="hero-logo-space" aria-hidden="true"></div>
         <div class="intro-wordmark" aria-hidden="true">Zaccaro</div>
         <div class="intro-controls">
-          <span class="intro-hint" aria-hidden="true">Mova o cursor ou toque</span>
+          <span class="intro-hint" aria-hidden="true">Explore as conexões</span>
           <button class="intro-motion" type="button" aria-pressed="false" hidden>Pausar animação</button>
         </div>
       </div>
+      <a class="hero-scroll" href="#sobre"><span>Explore minha trajetória</span><span aria-hidden="true">↓</span></a>
     </section>
 
     <section class="section-card about" id="sobre" aria-labelledby="about-title">

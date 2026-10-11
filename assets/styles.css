@@ -445,6 +445,8 @@ body.menu-open .backdrop {
 /* Main and shared sections */
 
 .main {
+  position: relative;
+  z-index: 1;
   width: min(calc(100% - var(--sidebar-width) - 72px), var(--content-max));
   padding: 22px 0 28px;
   margin-left: calc(var(--sidebar-width) + 32px);
@@ -466,8 +468,9 @@ body.menu-open .backdrop {
 
 .section-card {
   padding: clamp(30px, 5vw, 64px);
-  background: rgba(255, 255, 255, 0.052);
-  backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, rgba(110, 201, 215, 0.075), rgba(3, 27, 35, 0.4));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .section-header {
@@ -519,33 +522,30 @@ body.menu-open .backdrop {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: 30px;
   align-items: center;
   min-height: calc(100svh - 44px);
-  padding: clamp(34px, 5.6vw, 76px);
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(0, 171, 213, 0.13), transparent 45%),
-    rgba(0, 25, 32, 0.46);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
+  padding: clamp(28px, 4vw, 56px);
+  padding-bottom: 90px;
 }
 
-.hero::before {
+.hero-scroll {
   position: absolute;
-  top: -35%;
-  right: -16%;
-  width: 610px;
-  height: 610px;
-  content: "";
-  border: 1px solid rgba(48, 214, 255, 0.11);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 64px rgba(48, 214, 255, 0.028),
-    0 0 0 130px rgba(48, 214, 255, 0.018);
+  bottom: 28px;
+  left: clamp(28px, 4vw, 56px);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 12px 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-scroll > span:last-child {
+  color: var(--accent-bright);
+  font-size: 1.25rem;
 }
 
 .hero-content {
@@ -576,15 +576,15 @@ body.menu-open .backdrop {
 .hero h1 {
   max-width: 790px;
   margin-bottom: 24px;
-  font-size: clamp(2.6rem, 4.7vw, 5.2rem);
+  font-size: clamp(3rem, 5.6vw, 6rem);
   overflow-wrap: anywhere;
   font-weight: 780;
-  line-height: 0.94;
+  line-height: 1.02;
   letter-spacing: -0.072em;
 }
 
 .hero h1 em {
-  color: var(--accent-bright);
+  color: #9adfe9;
   font-style: normal;
 }
 
@@ -664,22 +664,22 @@ body.menu-open .backdrop {
   font-weight: 700;
 }
 
-/* Wireframe logo: the canvas is sized independently of its controls. */
-.hero-visual {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  min-width: 0;
-  max-width: 470px;
-  margin-inline: auto;
+/* A persistent scene sits beneath the introduction and translucent panels. */
+.scene-background {
+  --scene-blur: 0px;
+  --scene-opacity: 1;
+  position: fixed;
+  inset: 0 0 0 calc(var(--sidebar-width) + 24px);
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .intro-stage {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1.14;
-  overflow: hidden;
-  background: radial-gradient(ellipse at center, rgba(0, 171, 213, 0.1), transparent 70%);
+  position: absolute;
+  inset: 0;
+  filter: blur(var(--scene-blur));
+  opacity: var(--scene-opacity);
 }
 
 .intro-canvas {
@@ -687,26 +687,41 @@ body.menu-open .backdrop {
   width: 100%;
   height: 100%;
   opacity: 0;
-  touch-action: pan-y pinch-zoom;
 }
 
-.hero-visual[data-render="ready"] .intro-canvas { opacity: 1; }
+.scene-background[data-render="ready"] .intro-canvas { opacity: 1; }
 
 .intro-fallback {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  color: var(--accent-bright);
+  top: var(--fallback-y, 50%);
+  left: var(--fallback-x, 70%);
+  width: var(--fallback-width, 360px);
+  height: 280px;
+  color: #87dcea;
+  transform: translate(-50%, -50%);
 }
 
-.hero-visual[data-render="ready"] .intro-fallback { display: none; }
+.scene-background[data-render="ready"] .intro-fallback { display: none; }
+
+.hero-visual {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  max-width: 450px;
+  margin-inline: auto;
+}
+
+.hero-logo-space {
+  width: 100%;
+  height: clamp(260px, 26vw, 370px);
+  pointer-events: none;
+}
 
 .intro-wordmark {
   margin-top: -12px;
-  color: var(--text);
+  color: var(--soft);
   font-size: clamp(1.8rem, 3vw, 2.5rem);
-  font-weight: 750;
+  font-weight: 650;
   letter-spacing: -0.065em;
   line-height: 1.2;
   text-align: center;
@@ -728,14 +743,14 @@ body.menu-open .backdrop {
   letter-spacing: 0.03em;
 }
 
-.hero-visual:not([data-render="ready"]) .intro-hint { display: none; }
-.hero-visual[data-motion="still"] .intro-hint { visibility: hidden; }
+body[data-scene-render="fallback"] .intro-hint,
+body[data-scene-motion="still"] .intro-hint { display: none; }
 
 .intro-motion {
   min-height: 44px;
   padding: 10px 14px;
   color: var(--soft);
-  background: rgba(0, 25, 32, 0.5);
+  background: rgba(0, 25, 32, 0.3);
   border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 0.65rem;
@@ -1143,7 +1158,9 @@ body.menu-open .backdrop {
   overflow: hidden;
   background:
     radial-gradient(circle at 4% 5%, rgba(48, 214, 255, 0.15), transparent 35%),
-    rgba(0, 25, 32, 0.53);
+    rgba(0, 25, 32, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .contact::after {
@@ -1256,14 +1273,9 @@ body.menu-open .backdrop {
 /* Responsive */
 
 @media (max-width: 1280px) and (min-width: 1025px) {
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 44px;
-  }
-
-  .hero-content { max-width: 720px; }
-  .hero-visual { max-width: 350px; }
-  .hero h1 { font-size: clamp(2.6rem, 4.8vw, 4rem); }
+  .hero { gap: 12px; padding-inline: 24px; }
+  .hero h1 { font-size: clamp(2.7rem, 4.2vw, 4.2rem); }
+  .hero-scroll { left: 24px; }
 }
 
 @media (max-width: 1024px) {
@@ -1344,6 +1356,8 @@ body.menu-open .backdrop {
     transform: translateX(106%);
   }
 
+  .scene-background { left: 0; }
+
   .menu-toggle {
     display: flex;
   }
@@ -1370,10 +1384,10 @@ body.menu-open .backdrop {
     max-width: 680px;
   }
 
-  .hero-visual {
-    width: min(100%, 360px);
-    margin-top: 12px;
-  }
+  .hero-visual { width: min(100%, 360px); margin-top: 0; }
+  .hero-logo-space { height: 245px; }
+  .hero { padding-bottom: 110px; }
+  .hero h1 { max-width: 680px; font-size: clamp(3rem, 7.5vw, 5rem); }
 
   .about-grid,
   .contact {
@@ -1424,12 +1438,14 @@ body.menu-open .backdrop {
     border-radius: 22px;
   }
 
-  .hero {
-    padding: 86px 23px 34px;
-  }
+  .hero { padding: 92px 18px 100px; gap: 12px; }
+  .hero-scroll { left: 18px; bottom: 22px; }
+  .hero-logo-space { height: 230px; }
+  .hero-actions { margin-bottom: 12px; }
+  .eyebrow { font-size: 0.64rem; margin-bottom: 22px; }
 
   .hero h1 {
-    font-size: clamp(2rem, 9.5vw, 3.4rem);
+    font-size: clamp(2.8rem, 11vw, 4rem);
     overflow-wrap: anywhere;
   }
 
@@ -1511,9 +1527,7 @@ body.menu-open .backdrop {
     padding: 0;
   }
 
-  .hero h1 {
-    font-size: 2rem;
-  }
+  .hero h1 { font-size: 2.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1576,6 +1590,8 @@ body.menu-open .backdrop {
   }
 
   .page-grid,
+  .scene-background,
+  .hero-scroll,
   .sidebar,
   .menu-toggle,
   .backdrop,
